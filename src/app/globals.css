@@ -1,26 +1,217 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: bazar --default;
+}
+@plugin "daisyui/theme" {
+  name: "bazar";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: #f7f3ec;
+  --color-base-200: #efe8dc;
+  --color-base-300: #e2d8c8;
+  --color-base-content: #1c2430;
+  --color-primary: #0f3d3e;
+  --color-primary-content: #f6f1e8;
+  --color-secondary: #9a4d24;
+  --color-secondary-content: #fff8f3;
+  --color-accent: #1f6b4a;
+  --color-neutral: #243044;
+  --color-success: #0f7a4a;
+  --color-error: #b42318;
+  --radius-field: 0.8rem;
+  --radius-selector: 999px;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f7f3ec;
+  --ink: #1c2430;
+  --muted: #5c6573;
+  --line: #e2d8c8;
+  --sand: #efe8dc;
+  --terra: #9a4d24;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-sand: var(--sand);
+  --color-terra: var(--terra);
+  --font-sans: var(--font-bengali);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-bengali), sans-serif;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.section-copy {
+  margin-top: 0.35rem;
+  margin-bottom: 1rem;
+  color: var(--muted);
+}
+
+.product-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.product-card {
+  display: flex;
+  gap: 0.9rem;
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 1.1rem;
+  padding: 1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(28, 36, 48, 0.08);
+}
+
+.product-emoji {
+  display: grid;
+  height: 4.2rem;
+  width: 4.2rem;
+  flex: none;
+  place-items: center;
+  border-radius: 1rem;
+  background: #f3ecdf;
+  font-size: 2rem;
+}
+
+.change-badge {
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.change-badge.up {
+  background: #e7f6ee;
+  color: #0f7a4a;
+}
+
+.change-badge.down {
+  background: #fdecea;
+  color: #b42318;
+}
+
+.change-badge.flat {
+  background: #eef0f3;
+  color: #667085;
+}
+
+.category-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.category-link.active {
+  background: #0f3d3e;
+  color: #f6f1e8;
+}
+
+.ticker {
+  overflow: hidden;
+  background: #0f3d3e;
+  color: #f6f1e8;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 48s linear infinite;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+.ticker-item .up {
+  color: #8ee0b5;
+}
+
+.ticker-item .down {
+  color: #ffb4ab;
+}
+
+.ticker-item .flat {
+  color: #d5d8de;
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-board {
+  display: grid;
+  gap: 1rem;
+  border-radius: 1.6rem;
+  background:
+    radial-gradient(circle at top right, #f3d7c4, transparent 40%),
+    linear-gradient(160deg, #fff, #efe4d2);
+  border: 1px solid var(--line);
+  padding: 1.2rem;
+}
+
+.hero-stall {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+  font-size: 2.2rem;
+}
+
+.hero-stall span {
+  display: grid;
+  height: 4.5rem;
+  place-items: center;
+  border-radius: 1rem;
+  background: white;
+}
+
+.hero-note {
+  border-radius: 1.1rem;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 1rem;
 }

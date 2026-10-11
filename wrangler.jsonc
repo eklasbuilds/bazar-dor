@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bazar-dor",
+  "workers_dev": true,
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "bazar-dor"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bazar-dor",
+      "database_id": "c81cb121-958a-4184-8070-5b18f4bed24d",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "BETTER_AUTH_URL": "https://ecom.eklas.tech"
+  },
+  "routes": [
+    {
+      "pattern": "ecom.eklas.tech",
+      "custom_domain": true
+    }
+  ]
+}
